@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <link rel="stylesheet" type="text/css" href="CSS.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    </head>
+    <body>
+        <table class="top">
+            <tr><td> <h1> Bill/Tip Calculator</h1><p>V.1</p> </td>
+            </tr>
+        </table>
+   <table class="bottom">
+
+   <tr><td> <h4>How much was your bill?</h4> </td>
+    <h3><td class="center"> $ <input class ="text" type="text" id="billTotal"></h3></tr></td></h3>
+    </tr>
+    <!--Below: tip percentage -->
+    <tr>
+        <td><h4>How much would you like to tip?</h4></td>
+        <td class ="center"> %<input class="text" type="text" id="tipPercentage"></td>
+    </tr>
+    <!--Below: bill split-->
+    <tr> 
+        <td>  <h4>How many people are splitting the bill? </h4>              </td>
+        <td class="center">   
+            
+             <select id="numberOfPeople" name="Number of People">
+                <option value = "">Select an Option</option>
+                <option value = "1">1</option>
+                <option value = "2">2</option>
+                <option value = "3">3</option>
+                <option value = "4">4</option>
+                <option value = "5">5</option>
+                <option value = "6">6</option>
+            </select>         </td></h3>
+    
+    </tr>
+    <tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+    
+    <tr class = "center">
+        <td class="center" colspan="2"> <input class="btn" type="button" id="btn_1" value="Calculate!">
+            
+        </td>
+    </tr>
+</table>
+<table>
+<h2><b><div class = "result" id="textDisplayed1"></div></b></h2>
+
+</table>
+
+    </body>
+    <script>
+
+
+
+function calculateBill(total,perc,split){
+    
+    total = parseFloat(total)
+    perc = parseFloat(perc)
+    split = parseInt(split)
+     perc = perc * .01
+     let total1 = (total + (total*perc) )
+    let final = (total + (total*perc) ) / split
+if (isNaN(total) || (total<=0)){
+	return "Somethings not right, please check your numbers and try again!";
+} if (isNaN(perc) || (perc<=0) ){
+	return "Somethings not right, please check your numbers and try again!";
+} if (isNaN(split) || (split<=0) || (parseInt(split) !=split)){
+	return "Somethings not right, please check your numbers and try again!";
+} if (split == 1){
+    return "Bill: $" + total .toFixed(2)+ "<br>" + "Tip: $" + (total*perc).toFixed(2) + "<br>" + "<br>"+ "Total: $" + final.toFixed(2);
+}
+else 
+
+    return "Bill: $" + total .toFixed(2) + " + Tip: $" + (total*perc).toFixed(2) + "<br>"+ "Total: $" + total1.toFixed(2) + 
+    "<br>" + "<br>" + "Each person should pay $" + final.toFixed(2);
+
+
+}
+
+
+$("#btn_1").click(function(){
+
+let billTotal = $('#billTotal').val();
+let tipPerc = $('#tipPercentage').val();
+let split = $('#numberOfPeople').val();
+
+
+
+let message = calculateBill(billTotal,tipPerc,split)
+$("#textDisplayed1").html(message)
+
+console.log(billTotal)
+console.log(tipPerc)
+console.log(split)
+
+});
+
+
+
+    </script>
+</html>
